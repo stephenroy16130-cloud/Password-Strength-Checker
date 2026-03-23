@@ -1,0 +1,559 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(145deg, #f4efe8 0%, #e8dfd5 100%);
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Decorative Background Elements */
+body::before {
+    content: '🔐';
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    font-size: 8rem;
+    opacity: 0.03;
+    pointer-events: none;
+    transform: rotate(-15deg);
+}
+
+body::after {
+    content: '⚡';
+    position: absolute;
+    bottom: 10%;
+    right: 5%;
+    font-size: 8rem;
+    opacity: 0.03;
+    pointer-events: none;
+    transform: rotate(10deg);
+}
+
+.container {
+    background: rgba(255, 250, 245, 0.85);
+    backdrop-filter: blur(12px);
+    border-radius: 48px;
+    padding: 2.5rem;
+    max-width: 650px;
+    width: 100%;
+    box-shadow: 0 30px 50px -25px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.6s ease;
+}
+
+.container:hover {
+    box-shadow: 0 35px 60px -25px rgba(0, 0, 0, 0.25);
+    transform: translateY(-2px);
+}
+
+/* Header */
+h1 {
+    font-family: 'Playfair Display', 'Times New Roman', serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #3f352e;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    letter-spacing: -0.5px;
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 70px;
+    height: 3px;
+    background: linear-gradient(90deg, #b58c73, #d4ad93);
+    margin: 0.8rem auto 0;
+    border-radius: 3px;
+}
+
+h1 i {
+    color: #b58c73;
+    margin: 0 0.3rem;
+}
+
+.password-section {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.password-section label {
+    font-weight: 600;
+    color: #5b4a3e;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    width: 100%;
+    margin-bottom: 0.3rem;
+}
+
+.password-section input {
+    flex: 1;
+    padding: 1rem 1.2rem;
+    border: 2px solid #e5d5c6;
+    border-radius: 60px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    font-family: monospace;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.password-section input:focus {
+    border-color: #b58c73;
+    box-shadow: 0 0 0 3px rgba(181, 140, 115, 0.2);
+    background: white;
+}
+
+.password-section button {
+    background: #f2e5db;
+    border: 1px solid #e5d5c6;
+    padding: 0.8rem 1.5rem;
+    border-radius: 60px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #5b4a3e;
+}
+
+.password-section button:hover {
+    background: #b58c73;
+    color: white;
+    border-color: #b58c73;
+    transform: translateY(-2px);
+}
+
+/* Requirements Section */
+.requirements {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 32px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(229, 213, 198, 0.5);
+}
+
+.requirements h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #5b4a3e;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.requirements ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.8rem;
+}
+
+.requirements li {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.strength-meter {
+    margin-bottom: 1.5rem;
+}
+
+.strength-bar-container {
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    height: 8px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.strength-bar {
+    width: 0%;
+    height: 100%;
+    background: #f44336;
+    border-radius: 20px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+#strength-text {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #8f7b6d;
+    margin-top: 0.5rem;
+}
+
+.suggestions {
+    background: rgba(181, 140, 115, 0.08);
+    border-radius: 32px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #b58c73;
+}
+
+.suggestions h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #5b4a3e;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.suggestions ul {
+    list-style: none;
+}
+
+.suggestions li {
+    font-size: 0.85rem;
+    color: #6f5240;
+    padding: 0.4rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    animation: slideIn 0.3s ease;
+}
+
+.suggestions li::before {
+    content: '💡';
+    font-size: 0.9rem;
+}
+
+/* Requirement Checkbox */
+.requirement-checkbox {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 60px;
+    text-align: center;
+}
+
+.requirement-checkbox label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    cursor: pointer;
+    color: #5b4a3e;
+    font-weight: 500;
+}
+
+.requirement-checkbox input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #b58c73;
+}
+
+.requirement-checkbox input:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* Proceed Button */
+#proceedBtn {
+    width: 100%;
+    background: linear-gradient(135deg, #b58c73, #9f765c);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 60px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+#proceedBtn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 25px -12px #7a5f4f;
+}
+
+#proceedBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Message Area */
+#message {
+    text-align: center;
+    padding: 0.8rem;
+    border-radius: 60px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Dark Mode Support */
+body.dark-mode {
+    background: linear-gradient(145deg, #0f0f1a 0%, #1a1a2e 100%);
+}
+
+body.dark-mode .container {
+    background: rgba(15, 20, 35, 0.85);
+    border-color: #2a3a4a;
+}
+
+body.dark-mode h1 {
+    color: #f0e2d0;
+}
+
+body.dark-mode .password-section label {
+    color: #c8bcac;
+}
+
+body.dark-mode .password-section input {
+    background: #1e2538;
+    border-color: #2d3a4a;
+    color: #e8e2d4;
+}
+
+body.dark-mode .password-section input:focus {
+    border-color: #d4a373;
+}
+
+body.dark-mode .password-section button {
+    background: #2a3148;
+    border-color: #2d3a4a;
+    color: #e8e2d4;
+}
+
+body.dark-mode .password-section button:hover {
+    background: #d4a373;
+    color: #0f0f1a;
+}
+
+body.dark-mode .requirements {
+    background: rgba(25, 30, 50, 0.6);
+    border-color: #2d3a4a;
+}
+
+body.dark-mode .requirements h3 {
+    color: #f0e2d0;
+}
+
+body.dark-mode .requirements li {
+    color: #c8bcac;
+}
+
+body.dark-mode .strength-bar-container {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode #strength-text {
+    color: #c8bcac;
+}
+
+body.dark-mode .suggestions {
+    background: rgba(212, 163, 115, 0.1);
+}
+
+body.dark-mode .suggestions h3 {
+    color: #f0e2d0;
+}
+
+body.dark-mode .suggestions li {
+    color: #c8bcac;
+}
+
+body.dark-mode .requirement-checkbox {
+    background: rgba(25, 30, 50, 0.6);
+}
+
+body.dark-mode .requirement-checkbox label {
+    color: #c8bcac;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Success State Animation */
+.container.success {
+    animation: pulse 0.4s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 550px) {
+    .container {
+        padding: 1.5rem;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+    }
+    
+    .password-section {
+        flex-direction: column;
+    }
+    
+    .password-section button {
+        width: 100%;
+    }
+    
+    .requirements ul {
+        grid-template-columns: 1fr;
+    }
+    
+    .requirement-checkbox label {
+        font-size: 0.85rem;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f0e8e0;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #b58c73;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #9f765c;
+}
+
+body.dark-mode ::-webkit-scrollbar-track {
+    background: #1a1a2e;
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb {
+    background: #d4a373;
+}
+
+/* Strength Bar Color Variations */
+.strength-bar[data-strength="0"],
+.strength-bar[data-strength="1"] {
+    background: #f44336;
+}
+
+.strength-bar[data-strength="2"] {
+    background: #ff9800;
+}
+
+.strength-bar[data-strength="3"] {
+    background: #ffc107;
+}
+
+.strength-bar[data-strength="4"] {
+    background: #4caf50;
+}
+
+.strength-bar[data-strength="5"] {
+    background: #2e7d32;
+}
+
+/* Hover Effects */
+.requirements li:hover {
+    transform: translateX(5px);
+    background: rgba(181, 140, 115, 0.05);
+}
+
+/* Focus States */
+input:focus {
+    outline: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Tooltip Style */
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]:before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #b58c73;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
+[data-tooltip]:hover:before {
+    opacity: 1;
+}
